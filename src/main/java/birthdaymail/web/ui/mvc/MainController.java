@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import birthdaymail.domain.Mitarbeiter;
 import birthdaymail.domain.MitarbeiterDetail;
+import birthdaymail.repository.MitarbeiterDetailRepository;
 import birthdaymail.repository.MitarbeiterRepository;
 
 @RestController
@@ -18,6 +19,9 @@ public class MainController {
 	
 	@Autowired
 	private MitarbeiterRepository mitarbeiterRepository;
+	
+	@Autowired
+	private MitarbeiterDetailRepository mitarbeiterDetailRepository;
 
 	
 	@RequestMapping("/")
@@ -34,9 +38,8 @@ public class MainController {
 
 		mitarbeiterDetail.setGeburtsdatum(DateTime.now());
 		
-		//mitarbeiter.setMitarbeiterDetail(mitarbeiterDetail);
-		
-		//Mitarbeiter mitarbeiterDB =  mitarbeiterRepository.save(mitarbeiter);
+		mitarbeiterDetail = mitarbeiterDetailRepository.save(mitarbeiterDetail);
+		logger.info(Long.toString(mitarbeiterDetail.getId()));
 	
 		return mitarbeiterRepository.save(mitarbeiter);
 	}

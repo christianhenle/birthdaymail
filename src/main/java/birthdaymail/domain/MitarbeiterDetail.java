@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import lombok.Getter;
@@ -19,6 +20,7 @@ public class MitarbeiterDetail {
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime geburtsdatum;
 
 	//private Mitarbeiter mitarbeiter;
