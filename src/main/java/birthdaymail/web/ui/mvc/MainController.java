@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import birthdaymail.domain.Mitarbeiter;
 import birthdaymail.domain.MitarbeiterDetail;
-import birthdaymail.repository.MitarbeiterDetailRepository;
-import birthdaymail.repository.MitarbeiterRepository;
+import birthdaymail.service.MitarbeiterService;
 
 @RestController
 public class MainController {
@@ -18,30 +17,13 @@ public class MainController {
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
 	@Autowired
-	private MitarbeiterRepository mitarbeiterRepository;
+	private MitarbeiterService mitarbeiterService;
 	
-	@Autowired
-	private MitarbeiterDetailRepository mitarbeiterDetailRepository;
-
 	
 	@RequestMapping("/")
-	public Mitarbeiter checkForBirthday(){
+	public void checkForBirthday(){
 		
-		Mitarbeiter mitarbeiter = new Mitarbeiter();
-	
-		mitarbeiter.setNachname("nachname");
-		mitarbeiter.setPersonalNumer("123456");
-		mitarbeiter.setVorname("vorname");
-	
-		
-		MitarbeiterDetail mitarbeiterDetail = new MitarbeiterDetail();
-
-		mitarbeiterDetail.setGeburtsdatum(DateTime.now());
-		
-		mitarbeiterDetail = mitarbeiterDetailRepository.save(mitarbeiterDetail);
-		logger.info(Long.toString(mitarbeiterDetail.getId()));
-	
-		return mitarbeiterRepository.save(mitarbeiter);
+		//TODO Iterable Mitarbeiter
 	}
 
 }
