@@ -1,6 +1,7 @@
 package birthdaymail.web.ui.mvc;
 
-import org.joda.time.DateTime;
+import static birthdaymail.repository.MitarbeiterDetailPredicate.mitarbeiterTodayBirthday;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import birthdaymail.domain.Mitarbeiter;
-import birthdaymail.domain.MitarbeiterDetail;
+import birthdaymail.repository.MitarbeiterRepository;
 import birthdaymail.service.MitarbeiterService;
 
 @RestController
@@ -19,10 +20,14 @@ public class MainController {
 	@Autowired
 	private MitarbeiterService mitarbeiterService;
 	
+	@Autowired
+	private MitarbeiterRepository mitarbeiterRepository;
+	
 	
 	@RequestMapping("/")
-	public void checkForBirthday(){
+	public Iterable<Mitarbeiter> checkForBirthday(){
 		
+		return mitarbeiterRepository.findAll(mitarbeiterTodayBirthday());
 		//TODO Iterable Mitarbeiter
 	}
 
