@@ -14,7 +14,7 @@ public class SmtpMailSender {
 	@Autowired
 	private JavaMailSender javaMailSender;
 
-	public void send(String to, String subject, String body)
+	public void send(String to[], String subject, String body)
 	{
 		MimeMessage message = javaMailSender.createMimeMessage();
 		MimeMessageHelper helper;
@@ -28,8 +28,6 @@ public class SmtpMailSender {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-	
 		
 		javaMailSender.send(message);
 	}
